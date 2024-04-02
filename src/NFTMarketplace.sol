@@ -100,10 +100,6 @@ contract NFTMarketplace {
         }
 
         delete s_sales[_saleId];
-        IERC721(s_sales[_saleId].nft).approve(
-            address(this),
-            s_sales[_saleId].id
-        );
 
         emit SaleCancelled(
             _saleId,
@@ -139,5 +135,13 @@ contract NFTMarketplace {
         delete s_sales[_saleId];
 
         emit SaleCompleted(_saleId, seller, msg.sender, nft, id, price);
+    }
+
+    function getSale(bytes32 _saleId)
+        external
+        view
+        returns (Sale memory sale)
+    {
+        return s_sales[_saleId];
     }
 }
