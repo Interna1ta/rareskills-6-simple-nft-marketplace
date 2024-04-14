@@ -3,7 +3,7 @@ pragma solidity ^0.8.21;
 
 import {Test, console} from "forge-std/Test.sol";
 import {NFTMarketplace} from "../src/NFTMarketplace.sol";
-import {MyNFT} from "../src/MyNFT.sol";
+import {MyNFT} from "./mock/MyNFT.sol";
 
 contract NFTMarketplaceTest is Test {
     NFTMarketplace public marketplace;
@@ -24,7 +24,12 @@ contract NFTMarketplaceTest is Test {
         nft.safeMint(OWNER, NFT_ID);
         //TODO: revise better way to approve
         nft.setApprovalForAll(address(marketplace), true);
-        marketplace.sell(address(nft), NFT_ID, NFT_PRICE, block.timestamp + 1000);
+        marketplace.sell(
+            address(nft),
+            NFT_ID,
+            NFT_PRICE,
+            block.timestamp + 1000
+        );
 
         bytes32 saleHash = keccak256(
             abi.encodePacked(
@@ -45,7 +50,12 @@ contract NFTMarketplaceTest is Test {
         vm.startPrank(OWNER);
         nft.safeMint(OWNER, 1);
         nft.setApprovalForAll(address(marketplace), true);
-        marketplace.sell(address(nft), NFT_ID, NFT_PRICE, block.timestamp + 1000);
+        marketplace.sell(
+            address(nft),
+            NFT_ID,
+            NFT_PRICE,
+            block.timestamp + 1000
+        );
 
         bytes32 saleHash = keccak256(
             abi.encodePacked(
@@ -64,7 +74,12 @@ contract NFTMarketplaceTest is Test {
         vm.startPrank(OWNER);
         nft.safeMint(OWNER, NFT_ID);
         nft.setApprovalForAll(address(marketplace), true);
-        marketplace.sell(address(nft), NFT_ID, NFT_PRICE, block.timestamp + 1000);
+        marketplace.sell(
+            address(nft),
+            NFT_ID,
+            NFT_PRICE,
+            block.timestamp + 1000
+        );
         marketplace.cancel(
             keccak256(
                 abi.encodePacked(
@@ -83,7 +98,12 @@ contract NFTMarketplaceTest is Test {
         vm.startPrank(OWNER);
         nft.safeMint(OWNER, NFT_ID);
         nft.setApprovalForAll(address(marketplace), true);
-        marketplace.sell(address(nft), NFT_ID, NFT_PRICE, block.timestamp + 1000);
+        marketplace.sell(
+            address(nft),
+            NFT_ID,
+            NFT_PRICE,
+            block.timestamp + 1000
+        );
 
         bytes32 saleHash = keccak256(
             abi.encodePacked(
